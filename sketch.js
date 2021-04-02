@@ -6,26 +6,46 @@ const Constraint = Matter.Constraint;
 var engine, world;
 var hero;
 var ground;
+var bg = "sky.jpg";
+var monster;
+var slingshot;
 
 
 function preload() {
 //preload the images here
-
+bg = loadImage("sky.jpg");
 }
 
 function setup() {
-  createCanvas(3000, 800);
-  engine = Engine.create;
+  createCanvas(1000, 800);
+  engine = Engine.create();
   world = engine.world;
   // create sprites here
 
-  //hero = new Hero();
-  ground = new Ground(1500,750,3000,20);
+  hero = new Hero(200,300,400);
+  ground = new Ground(400,600,3000,10);
+  monster = new Monster(800,300,200,200);
+  slingshot = new SlingShot(hero.body,{x:100,y:200})
 }
 
 function draw() {
-  background("grey");
+  background(bg);
+
+  if(hero.body.x >= monster.body.x){
+    monster.body.y = monster.body.y+400;
+  }
 
   ground.display();
+  monster.display();
+  hero.display();
+  slingshot.display();
+}
+
+function mouseDragged(){
+  Matter.Body.setPosition(hero.body,{x:mouseX,y:mouseY});
+}
+
+function mouseReleased(){
+  slingshot.fly();
 }
 
