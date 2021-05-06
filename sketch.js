@@ -9,7 +9,8 @@ var ground;
 var bg = "sky.jpg";
 var monster;
 var slingshot;
-
+var blocks = [];
+var block;
 
 function preload() {
 //preload the images here
@@ -25,6 +26,14 @@ function setup() {
   hero = new Hero(200,300,400);
   ground = new Ground(400,600,3000,10);
   monster = new Monster(800,300,200,200);
+  for(var i = 0; i<7; i++){
+      block = new Block(450,200);
+      blocks.push(block);
+      block = new Block(500,200);
+      blocks.push(block);
+      block = new Block(550,200);
+      blocks.push(block);
+  }
   slingshot = new SlingShot(hero.body,{x:100,y:200})
 }
 
@@ -39,6 +48,9 @@ function draw() {
   monster.display();
   hero.display();
   slingshot.display();
+  for(var i = 0; i<blocks.length; i++){
+    blocks[i].display();
+  }
 }
 
 function mouseDragged(){
@@ -46,6 +58,6 @@ function mouseDragged(){
 }
 
 function mouseReleased(){
-  slingshot.fly();
+  //slingshot.fly();
 }
 
