@@ -23,23 +23,23 @@ function setup() {
   world = engine.world;
   // create sprites here
 
-  hero = new Hero(200,300,400);
+  hero = new Hero(200,300,150);
   ground = new Ground(400,600,3000,10);
   monster = new Monster(800,300,200,200);
   for(var i = 0; i<7; i++){
-      block = new Block(450,200);
-      blocks.push(block);
-      block = new Block(500,200);
-      blocks.push(block);
-      block = new Block(550,200);
-      blocks.push(block);
+     var block1 = new Block(400,200);
+      blocks.push(block1);
+     var block2 = new Block(475,200);
+      blocks.push(block2);
+     var block3 = new Block(550,200);
+      blocks.push(block3);
   }
   slingshot = new SlingShot(hero.body,{x:100,y:200})
 }
 
 function draw() {
   background(bg);
-
+  Engine.update(engine);
   if(hero.body.x >= monster.body.x){
     monster.body.y = monster.body.y+400;
   }
